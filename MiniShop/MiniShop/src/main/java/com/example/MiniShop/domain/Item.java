@@ -2,14 +2,14 @@ package com.example.MiniShop.domain;
 
 import com.example.MiniShop.domain.Enum.ItemStatus;
 import com.sun.istack.NotNull;
-import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Getter
+@Getter @Setter
 public class Item {
 
     @Id
@@ -24,8 +24,7 @@ public class Item {
     @NotNull
     private int price;
 
-    @NotNull
-    private int stockQuantity; // 재고수량
+    private int stockQuantity = 0; // 재고수량
 
     @Lob //문자열을 길이제한 없이 text로 사용
     @Column(nullable = false)
@@ -39,15 +38,14 @@ public class Item {
     private LocalDateTime updateTime; //수정 시간
 
 
-    @Builder
-    public Item(String name, int price,int stockQuantity,String itemDetail){
-        this.name = name;
-        this.price = price;
-        this.stockQuantity = stockQuantity;
-        this.itemDetail = itemDetail;
-        this.registerTime = LocalDateTime.now();
+    public static Item createItem(String name, int price, int stockQuantity, String itemDetail){
+        Item item = new Item();
+        item.setName(name);
+        item.setPrice(price);
+        item.setStockQuantity(stockQuantity);
+        item.setItemDetail(itemDetail);
+        return item;
     }
-
 
 
     /***비즈니스 로직****/
