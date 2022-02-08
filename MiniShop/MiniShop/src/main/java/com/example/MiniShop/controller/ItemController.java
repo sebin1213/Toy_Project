@@ -11,6 +11,11 @@ import java.util.List;
 @Controller
 public class ItemController {
 
+    @GetMapping(value = "/")
+    public String index(Model model) {
+        return "index";
+    }
+
     @GetMapping(value = "/ex02")
     public String thymeleafExample02(Model model) {
         ItemForm itemform = new ItemForm();
