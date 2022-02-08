@@ -39,7 +39,10 @@ dependencies {
 
 	// 스프링 부트 시큐어리티 추가
 	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5' // 뷰 단에서 현재 로그인된 사용자의 정보를 가져오기 위해 추가
+	implementation 'org.springframework.security:spring-security-taglibs' //Security Taglibs 추가
+	implementation 'org.springframework.security:spring-security-config' //csrf 방지
+	implementation 'org.springframework.security:spring-security-web'//csrf 방지
 
 
 	compileOnly 'org.projectlombok:lombok'
