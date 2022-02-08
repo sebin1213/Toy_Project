@@ -2,7 +2,6 @@ package com.example.MiniShop.controller;
 
 
 import com.example.MiniShop.controller.form.MemberJoinForm;
-import com.example.MiniShop.controller.form.MemberLoginForm;
 import com.example.MiniShop.domain.Member;
 //import com.example.MiniShop.domain.dto.MemberJoinDto;
 import com.example.MiniShop.service.MemberService;

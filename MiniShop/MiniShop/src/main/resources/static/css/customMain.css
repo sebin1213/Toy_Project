@@ -1,0 +1,58 @@
+#bk_color{
+    background-color: rgb(254 250 236);
+}
+
+
+#slide{
+height :768px;
+}
+.menu{
+    display: inline-block;
+    position: relative;
+        float: left;
+            width: 20%;
+            text-align: center;
+}
+
+.menu a{
+position: relative;
+    display: block;
+    padding: 10px 15px;
+}
+
+#padding_box{
+    padding: 0 30%;
+}
+#logo{
+    float: left;
+    height: 50px;
+    line-height: 20px;
+}
+#logo_img{
+height: 100%;
+}
+.logo_login{
+    padding: 0 30%;
+    width: 100%;
+}
+#login_img{
+    padding: 10%;
+}
+#login_box{
+    padding: 10%;
+}
+#btn-login{
+    width: 100%;
+    margin: 5% 0 0 0;
+    color: rgb(98 87 114);
+    background-color: rgb(243 129 129);
+    border-color: rgb(243 129 129);
+    font-weight: bold;
+    }
+.nav-link {
+    color: rgb(98 87 114);
+    font-weight: bold;
+}
+.single_menu{
+    color: rgb(98 87 114);
+}

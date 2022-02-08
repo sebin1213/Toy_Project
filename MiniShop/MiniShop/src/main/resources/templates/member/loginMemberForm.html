@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header" />
+<style>
+.fieldError {
+    border-color: #bd2130;
+}
+#userid{
+border-radius: 6px 6px 0 0;
+}
+#password{
+border-radius: 0 0 6px 6px;
+}
+</style>
+<body id="bk_color">
+<div th:replace="fragments/bodyHeader :: bodyHeader"/>
+  <div class="container">
+    <div id="padding_box">
+      <div id="login_box">
+        <div id="login_img">
+          <img class="logo_login" src="/img/logo2.png" alt="My Image">
+          <img class="logo_login" src="/img/logo3.png" alt="My Image">
+        </div>
+        <form action="/member/login" method="post"> <!--컨트롤러에 해당 주소 맵핑 안만들고 시큐리티가 가로채게 할것-->
+          <div>
+            <input type="text" class="form-control" name="userid" placeholder="아이디를 입력하세요" id="userid">
+          </div>
+          <div>
+            <input type="password" class="form-control" name="password" placeholder="비밀번호를 입력하세요" id="password">
+          </div>
+          <p th:if="${loginErrorMsg}" class="fieldError" th:text="${loginErrorMsg}"></p>
+          <button id="btn-login" class="btn btn-primary">로그인</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
