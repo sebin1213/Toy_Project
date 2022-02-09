@@ -11,6 +11,7 @@ import java.util.List;
 
 @Entity
 @Getter @Setter
+@Table(name = "orders")
 public class Order {
 
     @Id
@@ -19,7 +20,7 @@ public class Order {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_id")
+    @JoinColumn(name = "member_id") // 일대다관계라면 다에 외래키 존재
     private Member member;
 
     private String delivery;

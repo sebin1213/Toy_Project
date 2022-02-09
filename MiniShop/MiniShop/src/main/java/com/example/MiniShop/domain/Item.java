@@ -26,16 +26,15 @@ public class Item {
 
     private int stockQuantity = 0; // 재고수량
 
+//    @OneToMany(mappedBy = "item",cascade = CascadeType.ALL)
+//    private ItemImg itemImg;
+
     @Lob //문자열을 길이제한 없이 text로 사용
     @Column(nullable = false)
     private String itemDetail; //상품 상세 설명
 
     @Enumerated(EnumType.STRING)
     private ItemStatus itemStatus; //상품 판매 상태
-
-    private LocalDateTime registerTime; //등록 시간
-
-    private LocalDateTime updateTime; //수정 시간
 
 
     public static Item createItem(String name, int price, int stockQuantity, String itemDetail){
