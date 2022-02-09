@@ -22,13 +22,13 @@ public class MemberController {
     private final MemberService memberService;
     private final PasswordEncoder passwordEncoder;
 
-    @GetMapping(value = "/member/new")
+    @GetMapping(value = "/shop/member/new")
     public String createMemberForm(Model model) {
         model.addAttribute("memberJoinForm", new MemberJoinForm());
         return "member/createMemberForm";
     }
 
-    @PostMapping(value = "/member/new")
+    @PostMapping(value = "/shop/member/new")
     public String createMember(@Valid MemberJoinForm memberJoinForm, BindingResult result){
 
         if(result.hasErrors()){
@@ -36,23 +36,23 @@ public class MemberController {
         }
         Member member = Member.createMember(new MemberJoinDto(memberJoinForm), passwordEncoder);
         memberService.join(member);
-        return "redirect:/";
+        return "redirect:/shop";
     }
 
-    @GetMapping(value = "/member/login")
+    @GetMapping(value = "/shop/member/login")
     public String loginMemberForm(Model model){
         return "/member/loginMemberForm";
     }
 
-    @GetMapping(value = "/member/login/error")
+    @GetMapping(value = "/shop/member/login/error")
     public String loginError(Model model){
         model.addAttribute("loginErrorMsg", "유효하지 않은 아이디, 비밀번호입니다.");
         return "/member/loginMemberForm";
     }
 
-    @GetMapping(value = "/member/logout")
+    @GetMapping(value = "/shop/member/logout")
     public String logout(Model model){
-        return "redirect:/";
+        return "redirect:/shop";
     }
 
 }
