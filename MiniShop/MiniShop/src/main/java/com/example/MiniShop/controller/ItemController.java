@@ -1,50 +1,38 @@
 package com.example.MiniShop.controller;
 
 import com.example.MiniShop.controller.form.ItemForm;
+import com.example.MiniShop.domain.Item;
+import com.example.MiniShop.repository.ItemRepository;
+import com.example.MiniShop.service.ItemService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller
+@RequiredArgsConstructor
 public class ItemController {
 
-    @GetMapping(value = "/")
-    public String index(Model model) {
-        return "index";
+    private final ItemService itemService;
+
+    @GetMapping(value = "/admin/item/new")
+    public String itemForm(Model model){
+        model.addAttribute("itemForm", new ItemForm());
+        return "item/createItem";
     }
-
-    @GetMapping(value = "/ex02")
-    public String thymeleafExample02(Model model) {
-        ItemForm itemform = new ItemForm();
-        itemform.setName("테스트 상품1");
-        itemform.setPrice(10000);
-        itemform.setStockQuantity(10);
-        itemform.setItemDetail("상품 상세 설명");
-
-        model.addAttribute("itemForm", itemform);
-        return "items/createItem";
-    }
-
-    @GetMapping(value = "/ex04")
-    public String thymeleafExample04(Model model){
-
-        List<ItemForm> itemFormList = new ArrayList<>();
-
-        for(int i=1;i<=10;i++){
-
-            ItemForm itemform = new ItemForm();
-            itemform.setName("테스트 상품1"+i);
-            itemform.setPrice(10000+i);
-            itemform.setStockQuantity(10+i);
-            itemform.setItemDetail("상품 상세 설명"+i);
-
-            itemFormList.add(itemform);
+    @PostMapping(value = "/admin/item/new")
+    public String createItem(@Valid ItemForm itemForm, BindingResult result){
+        if(result.hasErrors()){
+            return "item/createItem";
         }
-
-        model.addAttribute("itemFormList", itemFormList);
-        return "items/thymeleafEx04";
+        Item item = Item.createItem(itemForm.getName(),itemForm.getPrice(),itemForm.getStockQuantity(),itemForm.getItemDetail());
+        itemService.create(item);
+        return "item/createItem";
     }
 }
