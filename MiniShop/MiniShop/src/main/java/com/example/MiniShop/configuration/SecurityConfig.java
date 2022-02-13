@@ -23,15 +23,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
-        http.formLogin()
-                .loginPage("/member/login")
-                .defaultSuccessUrl("/")
-                .usernameParameter("userid")
-                .failureUrl("/member/login/error")
-                .and()
-                .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))
-                .logoutSuccessUrl("/")
+        http
+//                .authorizeRequests() //인가 요청이 오면
+//                .antMatchers("/admin").access("hasRole('ADMIN')") //해당 경로들은
+////                .permitAll() //접근을 허용한다.
+//                .anyRequest() //다른 모든 요청은
+//                .authenticated() //인증이 되야 들어갈 수 있다.
+//                .and() // 그리고
+                    .formLogin()
+                    .loginPage("/shop/member/login")
+                    .defaultSuccessUrl("/")
+                    .usernameParameter("userid")
+                    .failureUrl("/shop/member/login/error")
+                    .and()
+                    .logout()
+                    .logoutRequestMatcher(new AntPathRequestMatcher("/shop/member/logout"))
+                    .logoutSuccessUrl("/")
         ;
     }
 
