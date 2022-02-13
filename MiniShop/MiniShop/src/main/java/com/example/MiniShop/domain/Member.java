@@ -12,7 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter @Setter
+@Getter
+//@Setter
 public class Member {
     @Id
     @GeneratedValue
@@ -40,14 +41,24 @@ public class Member {
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<Order> orders = new ArrayList<>();
 
+//    public static Member createMember(MemberJoinDto memberJoinDto, PasswordEncoder passwordEncoder) {
+//        Member member =  new Member();
+//        member.setUserid(memberJoinDto.getUserid());
+//        String password = passwordEncoder.encode(memberJoinDto.getPassword());
+//        member.setPassword(password);
+//        member.setUsername(memberJoinDto.getUsername());
+//        member.setEmail(memberJoinDto.getEmail());
+//        member.setMemberStatus(MemberStatus.USER);
+//        return member;
+//    }
     public static Member createMember(MemberJoinDto memberJoinDto, PasswordEncoder passwordEncoder) {
         Member member =  new Member();
-        member.setUserid(memberJoinDto.getUserid());
+        member.userid = memberJoinDto.getUserid();
         String password = passwordEncoder.encode(memberJoinDto.getPassword());
-        member.setPassword(password);
-        member.setUsername(memberJoinDto.getUsername());
-        member.setEmail(memberJoinDto.getEmail());
-        member.setMemberStatus(MemberStatus.USER);
+        member.password = password;
+        member.username = memberJoinDto.getUsername();
+        member.email = memberJoinDto.getEmail();
+        member.memberStatus = MemberStatus.USER;
         return member;
     }
 

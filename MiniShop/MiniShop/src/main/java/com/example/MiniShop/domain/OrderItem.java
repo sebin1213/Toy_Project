@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 
 @Entity
 //@NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Getter @Setter
+@Getter
 public class OrderItem {
     @Id
     @GeneratedValue
@@ -37,11 +37,19 @@ public class OrderItem {
     public static OrderItem createOrderItem(Item item, int orderPrice, int count) { // Item item 필수로 들어가야함... 왜..?
         // int orderPrice 아이템에 가격이 있는데 이걸 안쓰는 이유는 뭐.. 할인될수도 있으니까?
         OrderItem orderItem = new OrderItem();
-        orderItem.setItem(item);
-        orderItem.setOrderPrice(orderPrice);
-        orderItem.setCount(count);
+        orderItem.item = item;
+        orderItem.orderPrice = orderPrice;
+        orderItem.count = count;
         item.removeStock(count); // 넘어온 개수만큼 재고를 줄여야함
         return orderItem;
+    }
+
+
+    /**연관관계 메서드**/
+    public void setOrder(Order order){
+        OrderItem orderItem = new OrderItem();
+        order.getOrderItems().add(orderItem);
+        orderItem.setOrder(order);
     }
 
 }
