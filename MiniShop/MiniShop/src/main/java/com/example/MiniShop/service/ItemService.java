@@ -5,6 +5,8 @@ import com.example.MiniShop.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class ItemService {
@@ -13,5 +15,8 @@ public class ItemService {
 
     public Item create(Item item){
         return itemRepository.save(item);
+    }
+    public List<Item> findAllItem(){
+        return itemRepository.findAll();
     }
 }
