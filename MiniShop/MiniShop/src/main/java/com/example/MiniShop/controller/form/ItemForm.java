@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Getter
 @Setter
@@ -18,8 +19,6 @@ public class ItemForm {
 
     @NotNull(message = "재고는 필수 입력 값입니다.")
     private int stockQuantity;
-
-    private ItemImg itemImg;
 
     private String itemDetail;
 
