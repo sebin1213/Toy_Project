@@ -1,12 +1,14 @@
 package com.example.MiniShop.domain;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity
-@Getter @Setter
+@Getter
+@Setter
 public class ItemImg{
 
     @Id
@@ -14,15 +16,29 @@ public class ItemImg{
     @Column(name="item_img_id")
     private Long id;
 
-    private String Name; //이미지 파일명
+    private String name; //이미지 파일명
 
+    private String oriImgName;
 
     private String imgUrl; //이미지 조회 경로
 
-    private String repimgUrl; //대표 이미지 여부
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "item_id")
+//    private Item item;
+//    @OneToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "item_id")
+//    private Item item;
 
-    public void updateItemImg(String oriImgName, String imgName, String imgUrl) {
-        this.Name = imgName;
+    public ItemImg createItemImg(String imgName, String oriImgName, String imgUrl) {
+        this.name = imgName;
+        this.imgUrl = imgUrl;
+        this.oriImgName=oriImgName;
+//        this.item = item;
+        return this;
+    }
+
+    public void updateItemImg(String imgName, String imgUrl) {
+        this.name = imgName;
         this.imgUrl = imgUrl;
     }
 }
