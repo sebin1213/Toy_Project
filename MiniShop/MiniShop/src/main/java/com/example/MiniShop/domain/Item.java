@@ -7,9 +7,10 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
-@Getter @Setter
+@Getter
 public class Item {
 
     @Id
@@ -27,24 +28,36 @@ public class Item {
     private int stockQuantity = 0; // 재고수량
 
 //    @OneToMany(mappedBy = "item",cascade = CascadeType.ALL)
-//    private ItemImg itemImg;
+//    private List<ItemImg> itemImg;
 
-    @Lob //문자열을 길이제한 없이 text로 사용
-    @Column(nullable = false)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "item_img_id")
+    private ItemImg itemImg;
+
     private String itemDetail; //상품 상세 설명
 
     @Enumerated(EnumType.STRING)
     private ItemStatus itemStatus; //상품 판매 상태
 
-
-    public static Item createItem(String name, int price, int stockQuantity, String itemDetail){
+    public static Item createItem(String name, int price, int stockQuantity, String itemDetail,ItemImg itemImg){
         Item item = new Item();
-        item.setName(name);
-        item.setPrice(price);
-        item.setStockQuantity(stockQuantity);
-        item.setItemDetail(itemDetail);
+        item.name= name;
+        item.price=price;
+        item.stockQuantity=stockQuantity;
+        item.itemDetail=itemDetail;
+        item.itemImg = itemImg;
         return item;
     }
+//    public static Item createItem(String name, int price, int stockQuantity, String itemDetail,List<ItemImg> itemImg){
+//        Item item = new Item();
+//        item.name= name;
+//        item.price=price;
+//        item.stockQuantity=stockQuantity;
+//        item.itemDetail=itemDetail;
+//        item.itemImg=itemImg;
+//        return item;
+//    }
+
 
 
     /***비즈니스 로직****/
