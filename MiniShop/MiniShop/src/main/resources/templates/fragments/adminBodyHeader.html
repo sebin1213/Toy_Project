@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<div class="header" th:fragment="adminBodyHeader">
+    <div class="container">
+        <nav class="navbar">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a id="logo" href="/admin"><img id="logo_img" src="/img/logo1.png" alt="My Image"></a>
+                </div>
+
+
+                <ul class="nav navbar-nav navbar-right" >
+                    <li class="nav-item">
+                        <a class="nav-link" href="/shop/member/login"><span class="glyphicon glyphicon-log-in"></span> Log In</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/shop/member/new"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
+                    </li>
+
+                </ul>
+            </div>
+            <div style="width: 100%; display: table;">
+                <ul class="nav">
+                    <li class="menu"><a class="single_menu" href="/admin/item/new">상품 추가</a></li>
+                    <li class="menu"><a class="single_menu" href="#">Page 2</a></li>
+                    <li class="menu"><a class="single_menu" href="#">Page 3</a></li>
+                    <li class="menu"><a class="single_menu" href="#">Page 4</a></li>
+                    <li class="menu"><a class="single_menu" href="#">Page 5</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>
+
