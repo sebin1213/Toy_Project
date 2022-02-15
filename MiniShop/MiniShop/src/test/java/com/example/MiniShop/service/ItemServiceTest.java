@@ -1,6 +1,8 @@
 package com.example.MiniShop.service;
 
+import com.example.MiniShop.controller.ItemCreateDto;
 import com.example.MiniShop.controller.ItemListDto;
+import com.example.MiniShop.controller.form.ItemForm;
 import com.example.MiniShop.domain.Item;
 import com.example.MiniShop.domain.ItemImg;
 import org.junit.jupiter.api.Test;
@@ -24,8 +26,16 @@ public class ItemServiceTest {
     Item createItemTest(){
         ItemImg itemImg = new ItemImg();
         Item item = new Item();
+        ItemForm itemForm = new ItemForm();
+
+        itemForm.setName("imgname");
+        itemForm.setItemDetail("itemDetail");
+        itemForm.setPrice(20000);
         ItemImg c_itemImg = itemImg.createItemImg("imgname","orgname","imgurl");
-        Item save_item = item.createItem("나시",50000,30,"상세정보",c_itemImg);
+
+        ItemCreateDto itemCreateDto = new ItemCreateDto(itemForm,c_itemImg);
+
+        Item save_item = item.createItem(itemCreateDto);
         return save_item;
     }
     @Test
