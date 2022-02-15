@@ -46,10 +46,10 @@ public class ItemController {
             return "item/createItem";
         }
 
-        Item item = new Item();
         ItemImg itemImg = itemImgService.createImg(itemImgFileList);
 
-        itemService.create(item.createItem(itemForm.getName(),itemForm.getPrice(),itemForm.getStockQuantity(),itemForm.getItemDetail(),itemImg));
+        itemService.create(Item.createItem(new ItemCreateDto(itemForm,itemImg)));
+//        itemService.create(Item.createItem(itemForm.getName(),itemForm.getPrice(),itemForm.getStockQuantity(),itemForm.getItemDetail(),itemImg));
         return "item/createItem";
     }
 
