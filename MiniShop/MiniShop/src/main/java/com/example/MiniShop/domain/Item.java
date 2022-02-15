@@ -1,14 +1,12 @@
 package com.example.MiniShop.domain;
 
-import com.example.MiniShop.controller.ItemCreateDto;
+import com.example.MiniShop.controller.Dto.ItemCreateDto;
+import com.example.MiniShop.controller.Dto.ItemUpdateDto;
 import com.example.MiniShop.domain.Enum.ItemStatus;
 import com.sun.istack.NotNull;
 import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Getter
@@ -37,15 +35,6 @@ public class Item {
     @Enumerated(EnumType.STRING)
     private ItemStatus itemStatus; //상품 판매 상태
 
-//    public static Item createItem(String name, int price, int stockQuantity, String itemDetail,ItemImg itemImg){
-//        Item item = new Item();
-//        item.name= name;
-//        item.price=price;
-//        item.stockQuantity=stockQuantity;
-//        item.itemDetail=itemDetail;
-//        item.itemImg = itemImg;
-//        return item;
-//    }
     public static Item createItem(ItemCreateDto itemCreateDto){
         Item item = new Item();
         item.name= itemCreateDto.getName();
@@ -54,6 +43,12 @@ public class Item {
         item.itemDetail=itemCreateDto.getItemDetail();
         item.itemImg=itemCreateDto.getItemImg();
         return item;
+    }
+    public void updateItem(ItemUpdateDto itemUpdateDto){
+        this.name= itemUpdateDto.getName();
+        this.price=itemUpdateDto.getPrice();
+        this.stockQuantity=itemUpdateDto.getStockQuantity();
+        this.itemDetail=itemUpdateDto.getItemDetail();
     }
 
 
