@@ -22,19 +22,12 @@ public class ItemImg{
 
     private String imgUrl; //이미지 조회 경로
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "item_id")
-//    private Item item;
-//    @OneToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "item_id")
-//    private Item item;
-
-    public ItemImg createItemImg(String imgName, String oriImgName, String imgUrl) {
-        this.name = imgName;
-        this.imgUrl = imgUrl;
-        this.oriImgName=oriImgName;
-//        this.item = item;
-        return this;
+    public static ItemImg createItemImg(String imgName, String oriImgName, String imgUrl) {
+        ItemImg itemImg = new ItemImg();
+        itemImg.name = imgName;
+        itemImg.imgUrl = imgUrl;
+        itemImg.oriImgName=oriImgName;
+        return itemImg;
     }
 
     public void updateItemImg(String imgName, String imgUrl) {

@@ -41,16 +41,6 @@ public class Member {
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<Order> orders = new ArrayList<>();
 
-//    public static Member createMember(MemberJoinDto memberJoinDto, PasswordEncoder passwordEncoder) {
-//        Member member =  new Member();
-//        member.setUserid(memberJoinDto.getUserid());
-//        String password = passwordEncoder.encode(memberJoinDto.getPassword());
-//        member.setPassword(password);
-//        member.setUsername(memberJoinDto.getUsername());
-//        member.setEmail(memberJoinDto.getEmail());
-//        member.setMemberStatus(MemberStatus.USER);
-//        return member;
-//    }
     public static Member createMember(MemberJoinDto memberJoinDto, PasswordEncoder passwordEncoder) {
         Member member =  new Member();
         member.userid = memberJoinDto.getUserid();

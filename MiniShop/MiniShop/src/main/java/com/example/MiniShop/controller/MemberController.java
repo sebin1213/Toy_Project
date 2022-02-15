@@ -30,7 +30,6 @@ public class MemberController {
 
     @PostMapping(value = "/shop/member/new")
     public String createMember(@Valid MemberJoinForm memberJoinForm, BindingResult result){
-
         if(result.hasErrors()){
             return "member/createMemberForm";
         }
