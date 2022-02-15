@@ -6,6 +6,7 @@ import com.example.MiniShop.repository.ItemImgRepository;
 import com.example.MiniShop.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -18,6 +19,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class ItemImgService {
     private final ItemImgRepository itemImgRepository;
