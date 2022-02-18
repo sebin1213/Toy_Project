@@ -56,3 +56,42 @@ height: 100%;
 .single_menu{
     color: rgb(98 87 114);
 }
+#img_file_box{
+    height: 34px;
+    border-radius: 4px;
+    line-height: 34px;
+}
+.itemImg{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.itemImgBox{
+height: 70%;
+    overflow:hidden;
+}
+.col-sm-3{
+height:450px;
+}
+.itemNameBox{
+    font-size: medium;
+    font-weight: bold;
+    width: 100%;
+}
+.itemPriceBox{
+    font-size: medium;
+    font-weight: bold;
+    width: 100%;
+    color: #f44;
+}
+.itemDetailBox{
+    color: #9f9f9f;
+    width: 100%;
+    overflow:hidden;
+}
+.itemDetailSpan{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin: 0px;
+    display: block;
+}
