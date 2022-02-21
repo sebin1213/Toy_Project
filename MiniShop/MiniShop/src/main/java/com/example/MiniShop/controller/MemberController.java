@@ -1,6 +1,8 @@
 package com.example.MiniShop.controller;
 
 
+import com.example.MiniShop.controller.Dto.MemberJoinDto;
+import com.example.MiniShop.controller.Dto.MyPageMemberDto;
 import com.example.MiniShop.controller.form.MemberJoinForm;
 import com.example.MiniShop.domain.Member;
 //import com.example.MiniShop.domain.dto.MemberJoinDto;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+import java.security.Principal;
 
 @Controller
 @RequiredArgsConstructor
@@ -52,6 +55,14 @@ public class MemberController {
     @GetMapping(value = "/shop/member/logout")
     public String logout(Model model){
         return "redirect:/shop";
+    }
+
+    @GetMapping(value = "/shop/mypage")
+    public String MyPageForm(Model model, Principal principal){
+        Member member = memberService.findByUserId(principal.getName());
+        MyPageMemberDto myPageMemberDto= new MyPageMemberDto(member);
+        model.addAttribute("member",myPageMemberDto);
+        return "/member/myPageForm";
     }
 
 }
