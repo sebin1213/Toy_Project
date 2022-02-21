@@ -10,6 +10,9 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 public class ItemListDto {
+
+    private Long id;
+
     @NotEmpty(message = "상품 이름은 필수 입력 값입니다")
     private String name;
 
@@ -20,7 +23,8 @@ public class ItemListDto {
 
     private String itemDetail;
 
-    public ItemListDto(String name,int price, String itemDetail,String imgUrl){
+    public ItemListDto(Long id,String name,int price, String itemDetail,String imgUrl){
+        this.id = id;
         this.name=name;
         this.itemDetail=itemDetail;
         this.imgUrl = imgUrl;
