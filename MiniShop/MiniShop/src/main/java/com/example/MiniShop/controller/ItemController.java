@@ -30,7 +30,7 @@ public class ItemController {
     private final ItemImgService itemImgService;
 
     @GetMapping(value = "/admin/item/new")
-    public String itemForm(Model model){
+    public String createItemForm(Model model){
         model.addAttribute("errorMessageImg", "");
         model.addAttribute("itemForm", new ItemForm());
         return "item/createItem";
@@ -69,19 +69,39 @@ public class ItemController {
         return "redirect:/admin/item";
     }
     @PostMapping(value = "/admin/item/{itemId}/edit")
-    public String ItemUpdateAdminForm(@ModelAttribute("itemForm") ItemUpdateForm itemUpdateForm){
+    public String ItemUpdateAdmin(@ModelAttribute("itemForm") ItemUpdateForm itemUpdateForm){
         itemService.updateItem(new ItemUpdateDto(itemUpdateForm));
         return "redirect:/admin/item";
     }
 
 
 
-    @GetMapping(value = "/shop/item/top")
+    @GetMapping(value = "/shop/item/list")
     public String itemListForm(Model model){
         List<Item> items = itemService.findAllItem();
-        List<ItemListDto> collects = items.stream().map(item -> new ItemListDto(item.getName(),item.getPrice(),item.getItemDetail(),
+        List<ItemListDto> collects = items.stream().map(item -> new ItemListDto(item.getId(),item.getName(),item.getPrice(),item.getItemDetail(),
                 item.getItemImg().getImgUrl())).collect(Collectors.toList());
         model.addAttribute("items", collects);
         return "item/topList";
     }
+
+    @GetMapping(value = "/shop/item/list/{itemId}")
+    public String itemDetailForm(@PathVariable("itemId") Long itemId, Model model){
+        Optional<Item> item_op = itemService.findById(itemId);
+        if (item_op.isPresent()){
+            Item item = item_op.get();
+            ItemListDto item_dto = new ItemListDto(item.getId(),item.getName(),item.getPrice(),item.getItemDetail(),
+                    item.getItemImg().getImgUrl());
+            model.addAttribute("item", item_dto);
+            return "item/itemDetail";
+        }
+        return "item/topList";
+    }
+    @PostMapping(value = "/shop/item/top/{itemid}")
+    public String itemDetailCart(@ModelAttribute("itemForm") ItemUpdateForm itemUpdateForm){
+
+        itemService.updateItem(new ItemUpdateDto(itemUpdateForm));
+        return "redirect:/admin/item";
+    }
+
 }
