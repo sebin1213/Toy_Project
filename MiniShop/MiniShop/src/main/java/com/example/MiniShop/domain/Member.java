@@ -1,10 +1,9 @@
 package com.example.MiniShop.domain;
 
-import com.example.MiniShop.controller.MemberJoinDto;
+import com.example.MiniShop.controller.Dto.MemberJoinDto;
 import com.example.MiniShop.domain.Enum.MemberStatus;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
-import lombok.Setter;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
@@ -40,6 +39,8 @@ public class Member {
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<Order> orders = new ArrayList<>();
+
+    private String address;
 
     public static Member createMember(MemberJoinDto memberJoinDto, PasswordEncoder passwordEncoder) {
         Member member =  new Member();
