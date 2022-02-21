@@ -30,6 +30,10 @@ public class MemberService implements UserDetailsService {
         }
     }
 
+    public Member findByUserId(String userid){
+        return memberRepository.findByUserid(userid);
+    }
+
     /****로그인 기능 (UserDetails 오버라이드)****/
     @Override
     public UserDetails loadUserByUsername(String userid) throws
