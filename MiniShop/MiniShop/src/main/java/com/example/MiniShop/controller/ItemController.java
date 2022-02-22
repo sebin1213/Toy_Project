@@ -74,8 +74,6 @@ public class ItemController {
         return "redirect:/admin/item";
     }
 
-
-
     @GetMapping(value = "/shop/item/list")
     public String itemListForm(Model model){
         List<Item> items = itemService.findAllItem();
@@ -97,11 +95,11 @@ public class ItemController {
         }
         return "item/topList";
     }
-    @PostMapping(value = "/shop/item/top/{itemid}")
+    @PostMapping(value = "/shop/item/add/cart/{itemId}")
     public String itemDetailCart(@ModelAttribute("itemForm") ItemUpdateForm itemUpdateForm){
 
         itemService.updateItem(new ItemUpdateDto(itemUpdateForm));
-        return "redirect:/admin/item";
+        return "/shop/cart";
     }
 
 }
