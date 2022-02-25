@@ -4,8 +4,10 @@ package com.example.MiniShop.controller;
 import com.example.MiniShop.controller.Dto.MemberJoinDto;
 import com.example.MiniShop.controller.Dto.MyPageMemberDto;
 import com.example.MiniShop.controller.form.MemberJoinForm;
+import com.example.MiniShop.domain.Cart;
 import com.example.MiniShop.domain.Member;
 //import com.example.MiniShop.domain.dto.MemberJoinDto;
+import com.example.MiniShop.service.CartService;
 import com.example.MiniShop.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -23,6 +25,7 @@ import java.security.Principal;
 public class MemberController {
 
     private final MemberService memberService;
+    private final CartService cartService;
     private final PasswordEncoder passwordEncoder;
 
     @GetMapping(value = "/shop/member/new")
@@ -36,8 +39,10 @@ public class MemberController {
         if(result.hasErrors()){
             return "member/createMemberForm";
         }
-        Member member = Member.createMember(new MemberJoinDto(memberJoinForm), passwordEncoder);
+        Cart cart = cartService.createCart(new Cart());
+        Member member = Member.createMember(new MemberJoinDto(memberJoinForm),cart,passwordEncoder);
         memberService.join(member);
+
         return "redirect:/shop";
     }
 

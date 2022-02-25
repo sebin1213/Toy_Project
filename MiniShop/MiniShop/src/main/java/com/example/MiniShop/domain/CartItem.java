@@ -1,13 +1,12 @@
 package com.example.MiniShop.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Optional;
 
 @Entity
-@Getter @Setter
+@Getter
 public class CartItem {
 
     @Id @GeneratedValue
@@ -23,4 +22,20 @@ public class CartItem {
     private Item item;
 
     private int count;
+
+    protected CartItem(){
+    }
+
+    /**
+     * 연관관계 메서드
+     * */
+    public void setCart(Cart cart){
+        this.cart=cart;
+    }
+    public static CartItem createCartItem(Item item, int count){
+        CartItem cartItem = new CartItem();
+        cartItem.item = item;
+        cartItem.count = count;
+        return cartItem;
+    }
 }
