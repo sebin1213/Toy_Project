@@ -12,7 +12,6 @@ import java.util.List;
 
 @Entity
 @Getter
-//@Setter
 public class Member {
     @Id
     @GeneratedValue
@@ -34,7 +33,8 @@ public class Member {
     @Enumerated(EnumType.STRING)
     private MemberStatus memberStatus = MemberStatus.USER;
 
-    @OneToOne(mappedBy = "member", cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cart_id")
     private Cart cart;
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
@@ -42,15 +42,21 @@ public class Member {
 
     private String address;
 
-    public static Member createMember(MemberJoinDto memberJoinDto, PasswordEncoder passwordEncoder) {
+    public static Member createMember(MemberJoinDto memberJoinDto, Cart cart,PasswordEncoder passwordEncoder) {
         Member member =  new Member();
+
         member.userid = memberJoinDto.getUserid();
         String password = passwordEncoder.encode(memberJoinDto.getPassword());
         member.password = password;
         member.username = memberJoinDto.getUsername();
         member.email = memberJoinDto.getEmail();
         member.memberStatus = MemberStatus.USER;
+        member.cart = cart;
         return member;
+    }
+
+    public void updateMember(){
+
     }
 
 }
