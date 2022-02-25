@@ -1,7 +1,7 @@
 package com.example.MiniShop.repository;
 
-import com.example.MiniShop.domain.CartItem;
+import com.example.MiniShop.domain.Cart;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface CartRepository extends JpaRepository<CartItem, Long> {
+public interface CartRepository extends JpaRepository<Cart, Long> {
 }
