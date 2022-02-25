@@ -1,7 +1,7 @@
 package com.example.MiniShop.service;
 
-import com.example.MiniShop.controller.ItemCreateDto;
-import com.example.MiniShop.controller.ItemListDto;
+import com.example.MiniShop.controller.Dto.ItemCreateDto;
+import com.example.MiniShop.controller.Dto.ItemListDto;
 import com.example.MiniShop.controller.form.ItemForm;
 import com.example.MiniShop.domain.Item;
 import com.example.MiniShop.domain.ItemImg;
@@ -53,7 +53,7 @@ public class ItemServiceTest {
     void controllerTest(){
         itemService.create(createItemTest());
         List<Item> items = itemService.findAllItem();
-        List<ItemListDto> collects = items.stream().map(item -> new ItemListDto(item.getName(),item.getPrice(),item.getItemDetail(),
+        List<ItemListDto> collects = items.stream().map(item -> new ItemListDto(item.getId(),item.getName(),item.getPrice(),item.getItemDetail(),
                 item.getItemImg().getImgUrl())).collect(Collectors.toList());
         assertEquals(1, collects.size());
         for(ItemListDto item : collects){

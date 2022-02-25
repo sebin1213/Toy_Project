@@ -1,7 +1,8 @@
 package com.example.MiniShop.service;
 
-import com.example.MiniShop.controller.MemberJoinDto;
+import com.example.MiniShop.controller.Dto.MemberJoinDto;
 import com.example.MiniShop.controller.form.MemberJoinForm;
+import com.example.MiniShop.domain.Cart;
 import com.example.MiniShop.domain.Member;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ class MemberServiceTest {
         memberJoinForm.setUsername("sebin");
         memberJoinForm.setPassword("aaaaawww");
 
-        Member member = Member.createMember(new MemberJoinDto(memberJoinForm),passwordEncoder);
+        Member member = Member.createMember(new MemberJoinDto(memberJoinForm),new Cart(),passwordEncoder);
         Member savedMember = memberService.join(member);
 
         assertEquals(member.getEmail(), savedMember.getEmail());
@@ -51,8 +52,8 @@ class MemberServiceTest {
         memberJoinForm.setEmail("test@email.com");
         memberJoinForm.setUsername("sebin");
         memberJoinForm.setPassword("aaaaawww");
-        Member member1 = Member.createMember(new MemberJoinDto(memberJoinForm),passwordEncoder);
-        Member member2 = Member.createMember(new MemberJoinDto(memberJoinForm),passwordEncoder);
+        Member member1 = Member.createMember(new MemberJoinDto(memberJoinForm),new Cart(),passwordEncoder);
+        Member member2 = Member.createMember(new MemberJoinDto(memberJoinForm),new Cart(),passwordEncoder);
 
         memberService.join(member1);
         Throwable e = assertThrows(IllegalStateException.class, () -> {
