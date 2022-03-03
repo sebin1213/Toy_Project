@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/header :: header" />
+
+<body id="bk_color">
+<div th:replace="fragments/bodyHeader :: bodyHeader"/>
+<div class="container">
+<div>
+    <table>
+    <tr>
+        <td>아이디</td>
+    <td th:text="${member.userid}"></td>
+    </tr>
+    <tr>
+        <td>닉네임</td>
+    <td th:text="${member.username}"></td>
+    </tr>
+    <tr>
+        <td>이메일</td>
+        <td th:text="${member.email}"></td>
+    </tr>
+    <tr>
+        <td>기본주소</td>
+    <td th:text="${member.address}"></td>
+    </tr>
+    </table>
+    <a href="/shop/mypage/edit" class="btn btn-primary" role="button">수정</a>
+
+
+</div>
+</div>
+</body>
+</html>

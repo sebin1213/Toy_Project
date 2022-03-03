@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/header :: header" />
+
+<body id="bk_color">
+<div th:replace="fragments/bodyHeader :: bodyHeader"/>
+<div class="container">
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>상품번호</th>
+        <th>이미지</th>
+        <th>상품명</th>
+        <th>상품 가격</th>
+        <th>구매 개수</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="item : ${itemList}">
+        <td th:text="${item.itemId}"></td>
+        <td><img th:src="${item.itemImgUrl}"></td>
+        <td th:text="${item.name}"></td>
+        <td th:text="${item.price}"></td>
+        <td th:text="${item.count}"></td>
+    </tr>
+    </tbody>
+</table>
+</div>
+</body>
+</html>

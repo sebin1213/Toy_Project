@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/header :: header" />
+<script>
+$(document).ready(function(){
+   var quantitiy=0;
+   $('.quantity-right-plus').click(function(e){
+        e.preventDefault();
+        var quantity = parseInt($('#quantity').val());
+        $('#quantity').val(quantity + 1);
+    });
+     $('.quantity-left-minus').click(function(e){
+        e.preventDefault();
+        var quantity = parseInt($('#quantity').val());
+        if(quantity>0){
+            $('#quantity').val(quantity - 1);
+        }
+    });
+});
+function submit_buy(form) {
+    form.action='/shop/orderItem';
+    form.submit();
+    return true;
+}
+
+</script>
+<body id="bk_color">
+<div th:replace="fragments/bodyHeader :: bodyHeader"/>
+<div class="container">
+    <div id="detail_item_box">
+        <div class="detail_itemImgBox">
+            <img class="itemImg" th:src="${item.imgUrl}">
+        </div>
+            <div id="item_text_area">
+        <div class="detail_itemNameBox">
+            <span th:text="${item.name}"></span>
+        </div>
+                <hr>
+        <div class="detail_itemPriceBox">
+            <span th:text="${item.price}"></span>원
+        </div>
+        <div sec:authorize="!isAuthenticated()" class="itemDetailBtn">
+            <button type="button" id="itemDetailBtn3" class="btn" onclick="location.href = '/shop/member/login'">로그인 후 상품 구매하기</button>
+        </div>
+
+            <div sec:authorize="isAuthenticated()">
+                <form role="form" method="post">
+                    <div id="detail_itemQuantity">
+                        <span>구매수량</span>
+                    </div>
+                    <div class="input-group">
+
+                        <span class="input-group-btn">
+                            <button type="button" class="quantity-left-minus btn btn-danger btn-number"  data-type="minus" data-field="">
+                              <span class="glyphicon glyphicon-minus"></span>
+                            </button>
+                        </span>
+
+                        <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="100">
+
+                        <span class="input-group-btn">
+                            <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus" data-field="">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                        </span>
+
+                    </div>
+                    <div class="itemDetailBtn">
+                        <button type="submit" id="itemDetailBtn1" class="btn">장바구니</button>
+                        <button type="button" id="itemDetailBtn2" class="btn" onclick='return submit_buy(this.form);'>구매</button>
+                    </div>
+                </form>
+            </div>
+
+    </div>
+    </div>
+</div>
+</body>
+</html>

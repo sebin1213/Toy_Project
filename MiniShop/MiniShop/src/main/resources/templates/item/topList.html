@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/header :: header" />
+
+<body id="bk_color">
+<div th:replace="fragments/bodyHeader :: bodyHeader"/>
+<div class="container">
+    <div style="margin-top: 25px;" th:each="item : ${items}">
+        <a href="#" th:href="@{/shop/item/list/{id} (id=${item.id})}">
+        <div class="col-sm-3">
+            <div class="itemImgBox">
+            <img class="itemImg" th:src="${item.imgUrl}">
+            </div>
+            <div class="itemNameBox">
+                <span th:text="${item.name}"></span>
+            </div>
+            <div class="itemPriceBox">
+            <span th:text="${item.price}"></span>
+            </div>
+            <div class="itemDetailBox">
+            <span class="itemDetailSpan" th:text="${item.itemDetail}"></span>
+            </div>
+        </div>
+        </a>
+    </div>
+</div>
+</body>
+</html>
