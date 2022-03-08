@@ -38,4 +38,7 @@ public class CartItem {
         cartItem.count = count;
         return cartItem;
     }
+    public void addCountCartItem(int count){
+        this.count +=count;
+    }
 }
