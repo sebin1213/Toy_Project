@@ -1,9 +1,7 @@
 package com.example.MiniShop.service;
 
-import com.example.MiniShop.domain.Cart;
-import com.example.MiniShop.domain.CartItem;
-import com.example.MiniShop.domain.Item;
-import com.example.MiniShop.domain.Member;
+import com.example.MiniShop.domain.*;
+import com.example.MiniShop.repository.CartItemRepository;
 import com.example.MiniShop.repository.CartRepository;
 import com.example.MiniShop.repository.ItemRepository;
 import com.example.MiniShop.repository.MemberRepository;
@@ -34,7 +32,6 @@ public class CartService {
                 CartItem cartItem = CartItem.createCartItem(item, quantity);
                 Cart cart = member.getCart();
                 cart.addCartItem(cartItem);
-
                 createCart(cart);
             }
         }
@@ -43,8 +40,24 @@ public class CartService {
         }
     }
 
-    public List<CartItem> cartItemList(String userId){
-        return memberRepository.findByUserid(userId).getCart().getCartItems();
+    public void deleteCart(Long itemId,String userId){
+        Member member = memberRepository.findByUserid(userId);
+        Cart cart = member.getCart();
+        for (CartItem cartItem: cart.getCartItems()){
+            if(cartItem.getItem().getId()==itemId){
+                cart.removeCartItem(cartItem);
+                cartRepository.deleteById(cartItem.getId());
+                break;
+            }
+        }
+
     }
+
+    public List<CartItem> cartItemList(String userId){
+
+        return memberRepository.findByUserid(userId).getCart().getCartItems();
+
+    }
+
 
 }
