@@ -7,8 +7,10 @@ import com.example.MiniShop.controller.form.ItemForm;
 import com.example.MiniShop.controller.form.ItemUpdateForm;
 import com.example.MiniShop.domain.Item;
 import com.example.MiniShop.domain.ItemImg;
+import com.example.MiniShop.domain.Member;
 import com.example.MiniShop.service.ItemImgService;
 import com.example.MiniShop.service.ItemService;
+import com.example.MiniShop.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +28,7 @@ import java.util.stream.Collectors;
 public class AdminController {
     private final ItemImgService itemImgService;
     private final ItemService itemService;
+    private final MemberService memberService;
 
     @GetMapping(value = "/admin/item/new")
     public String createItemForm(Model model){
@@ -71,4 +74,13 @@ public class AdminController {
         itemService.updateItem(new ItemUpdateDto(itemUpdateForm));
         return "redirect:/admin/item";
     }
+
+    @GetMapping(value = "/admin/user")
+    public String UserListAdminForm(@PathVariable("itemId") Long itemId, Model model){
+        List<Member> members = memberService.findAll();
+
+
+        return "redirect:/admin";
+    }
+
 }
