@@ -16,11 +16,12 @@ public class Cart {
     @Column(name = "cart_id")
     private Long id;
 
+
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval=true) //orphanRemoval=true 고아 객체를 삭제해준다. 장바구니까 날림... 상품이면 날리면 안됨.....
     private List<CartItem> cartItems = new ArrayList<>(); // 왜 ArrayList?? 1:N 관계에서 N이 없는 경우 null인 상태인 보다 Empty가 훨씬 직관적이다.null의 경우 값을 못 가져온 것인지 값이 비어있는건지 애매하다.
 
-//    @OneToOne(mappedBy = "cart",fetch = FetchType.LAZY)
-//    private Member member;
+    @OneToOne(mappedBy = "cart",fetch = FetchType.LAZY)
+    private Member member;
     /**
     / 연관관계 메서드
      **/
@@ -40,5 +41,10 @@ public class Cart {
 
     public void removeCartItem(CartItem cartItem){
         cartItems.remove(cartItem);
+    }
+
+    public int getTotalPrice() {
+        int totalPrice = cartItems.stream().mapToInt(CartItem::getTotalPrice).sum();
+        return totalPrice;
     }
 }
