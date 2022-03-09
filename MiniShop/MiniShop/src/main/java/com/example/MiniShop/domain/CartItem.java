@@ -41,4 +41,8 @@ public class CartItem {
     public void addCountCartItem(int count){
         this.count +=count;
     }
+    public int getTotalPrice() {
+        return getItem().getPrice() * getCount();
+    }
+
 }
