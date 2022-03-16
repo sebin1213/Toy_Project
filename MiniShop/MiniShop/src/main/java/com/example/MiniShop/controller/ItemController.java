@@ -56,7 +56,6 @@ public class ItemController {
 
     @PostMapping(value = "/shop/item/list/{itemId}")
     public String itemDetailCart(Principal principal, @PathVariable("itemId") Long itemId, @RequestParam int quantity){
-
         cartService.addCart(principal.getName(),itemId,quantity);
 
         return "redirect:/shop/item/list/{itemId}";
