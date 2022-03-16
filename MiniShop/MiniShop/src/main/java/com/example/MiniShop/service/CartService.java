@@ -16,6 +16,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class CartService {
     private final CartRepository cartRepository;
+    private final CartItemRepository cartItemRepository;
     private final ItemRepository itemRepository;
     private final MemberRepository memberRepository;
 
@@ -46,15 +47,13 @@ public class CartService {
         for (CartItem cartItem: cart.getCartItems()){
             if(cartItem.getItem().getId()==itemId){
                 cart.removeCartItem(cartItem);
-                cartRepository.deleteById(cartItem.getId());
+                cartItemRepository.deleteById(cartItem.getId());
                 break;
             }
         }
-
     }
 
     public List<CartItem> cartItemList(String userId){
-
         return memberRepository.findByUserid(userId).getCart().getCartItems();
 
     }
