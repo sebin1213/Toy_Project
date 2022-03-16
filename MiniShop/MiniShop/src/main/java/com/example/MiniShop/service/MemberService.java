@@ -10,6 +10,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 
 @Service
 @Transactional
@@ -50,4 +52,7 @@ public class MemberService implements UserDetailsService {
                 .build();
     }
 
+    public List<Member> findAll() {
+        return memberRepository.findAll();
+    }
 }
