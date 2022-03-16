@@ -3,6 +3,7 @@ package com.example.MiniShop.controller;
 import com.example.MiniShop.controller.Dto.AdminItemListDto;
 import com.example.MiniShop.controller.Dto.ItemCreateDto;
 import com.example.MiniShop.controller.Dto.ItemUpdateDto;
+import com.example.MiniShop.controller.Dto.MemberListDto;
 import com.example.MiniShop.controller.form.ItemForm;
 import com.example.MiniShop.controller.form.ItemUpdateForm;
 import com.example.MiniShop.domain.Item;
@@ -78,7 +79,8 @@ public class AdminController {
     @GetMapping(value = "/admin/user")
     public String UserListAdminForm(@PathVariable("itemId") Long itemId, Model model){
         List<Member> members = memberService.findAll();
-
+        List<MemberListDto> collects= members.stream().map(member -> new MemberListDto(member.getId(),member.getUserid(),member.getPassword(),member.getUsername(),member.getEmail(),member.getMemberStatus(),member.getOrders().size(),member.getAddress())).collect(Collectors.toList());
+        model.addAttribute("userList",collects);
 
         return "redirect:/admin";
     }
