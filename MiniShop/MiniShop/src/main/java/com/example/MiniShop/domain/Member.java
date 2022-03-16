@@ -55,8 +55,4 @@ public class Member {
         return member;
     }
 
-    public void updateMember(){
-
-    }
-
 }
