@@ -81,7 +81,6 @@ public class AdminController {
         List<Member> members = memberService.findAll();
         List<MemberListDto> collects= members.stream().map(member -> new MemberListDto(member.getId(),member.getUserid(),member.getPassword(),member.getUsername(),member.getEmail(),member.getMemberStatus(),member.getOrders().size(),member.getAddress())).collect(Collectors.toList());
         model.addAttribute("userList",collects);
-
         return "redirect:/admin";
     }
 

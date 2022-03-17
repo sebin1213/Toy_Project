@@ -40,7 +40,6 @@ public class ItemImgService {
             //디렉토리가 존재하지 않을 때 생성
             file.mkdirs();
         }
-
         String contentType = itemImgFileList.getContentType();
         String c_Type = ".jpg";
         if(contentType.equals("image/jpeg")){

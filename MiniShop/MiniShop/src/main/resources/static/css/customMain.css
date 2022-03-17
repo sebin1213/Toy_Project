@@ -95,3 +95,75 @@ height:450px;
     margin: 0px;
     display: block;
 }
+
+.detail_itemImgBox{
+    width: 50%;
+    height: 100%;
+    object-fit: cover;
+    float: left;
+    }
+#detail_item_box{
+    height: 600px;
+    background-color: white;
+    padding: 10px;
+}
+#item_text_area {
+    height: 100%;
+    float: left;
+    width: 50%;
+    padding: 20px;
+    position: relative;
+}
+.detail_itemNameBox{
+    font-size: xx-large;
+
+}
+.detail_itemPriceBox{
+    font-size: x-large;
+    font-weight: bold;
+}
+#itemDetailBtn1{
+    width:49%;
+        height: 60px;
+        font-size: x-large;
+        font-weight: bold;
+}
+#itemDetailBtn2{
+    width:49%;
+    float: right;
+        height: 60px;
+        font-size: x-large;
+        font-weight: bold;
+}
+#itemDetail_Buy{
+width: 49%;
+    float: right;
+    border: 1px solid transparent;
+    font-size: x-large;
+    font-weight: bold;
+    line-height: 58px;
+    vertical-align: middle;
+    padding: 0;
+    background-color: #efefef;
+    color: rgb(59, 59, 59);
+}
+
+
+#detail_itemQuantity{
+font-size: x-large;
+padding-top: 20px;
+    padding-bottom: 10px;
+}
+.itemDetailBtn {
+    padding-right: 40px;
+    padding-bottom: 20px;
+    bottom: 0px;
+    position: absolute;
+    width: 100%;
+}
+#itemDetailBtn3{
+        width: 100%;
+        height: 70px;
+        font-size: x-large;
+        font-weight: 600;
+}

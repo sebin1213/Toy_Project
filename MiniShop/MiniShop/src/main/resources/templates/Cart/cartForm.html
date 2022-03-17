@@ -1,7 +1,45 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="fragments/header :: header" />
-
+<style>
+    td img{
+        height: 70px;
+        width: 70px;
+    }
+    td:first-child {
+        width: 100px;
+    }
+    .del_btn{
+        padding: 10px;
+        font-size: large;
+    }
+    #order_total_price_text{
+    height: 100px;
+    width: 30%;
+    float: left;
+    font-size: xx-large;
+    line-height: 100px;
+    text-align: center;}
+    #order_total_price{height: 100px;
+    width: 30%;
+    float: left;
+    font-size: xx-large;
+    line-height: 100px;
+    color: #c90000;}
+    #btn_order{height: 100px;
+    width: 30%;
+    float: right;
+    font-size: x-large;
+    border-radius: 10px;}
+</style>
+<script>
+    function func(itemId) {
+        var return_text = confirm("선택하신 상품을 삭제하시겠습니까?");
+        if (return_text){
+            location.href = "/shop/cart/"+itemId+"/delete"
+        }
+}
+</script>
 <body id="bk_color">
 <div th:replace="fragments/bodyHeader :: bodyHeader"/>
 <div class="container">
@@ -11,8 +49,9 @@
         <th>상품번호</th>
         <th>이미지</th>
         <th>상품명</th>
-        <th>상품 가격</th>
+        <th>총 상품 가격</th>
         <th>구매 개수</th>
+        <th>삭제</th>
     </tr>
     </thead>
     <tbody>
@@ -20,11 +59,16 @@
         <td th:text="${item.itemId}"></td>
         <td><img th:src="${item.itemImgUrl}"></td>
         <td th:text="${item.name}"></td>
-        <td th:text="${item.price}"></td>
+        <td th:text="${item.price}*${item.count}"></td>
         <td th:text="${item.count}"></td>
+        <td><a class="del_btn" role="button" th:onclick="func('[[${item.itemId}]]')"> X </a>
+        </td>
     </tr>
     </tbody>
 </table>
+    <div id="order_total_price_text">주문 금액</div>
+    <div id="order_total_price">돈</div>
+    <div><button type="submit" class="btn" id="btn_order" onclick="location.href='/shop/order'" >주문하기</button></div>
 </div>
 </body>
 </html>

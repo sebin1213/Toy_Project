@@ -9,7 +9,6 @@
                 <a id="logo" href="/shop"><img id="logo_img" src="/img/logo1.png" alt="My Image"></a>
             </div>
 
-
             <ul sec:authorize="!isAuthenticated()" class="nav navbar-nav navbar-right" >
                 <li class="nav-item">
                     <a class="nav-link" href="/shop/member/login"><span class="glyphicon glyphicon-log-in"></span> Log In</a>
@@ -18,19 +17,13 @@
                     <a class="nav-link" href="/shop/member/new"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
                 </li>
             </ul>
-<!--            <c:if test="${member.verify == 9}">-->
-<!--                <li>-->
-<!--                    <a href="/admin/index">관리자 화면</a>-->
-<!--                </li>-->
-<!--            </c:if>-->
-
 
             <ul sec:authorize="isAuthenticated()" class="nav navbar-nav navbar-right">
                 <li class="nav-item">
-                    <a class="nav-link" ><span sec:authentication="principal.username"></span></a>
+                    <a class="nav-link" href="/shop/mypage"><span sec:authentication="principal.username"></span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/shop/board/myPage"> 장바구니</a>
+                    <a class="nav-link" href="/shop/cart"> 장바구니</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/shop/member/logout"> Log Out</a>
@@ -39,7 +32,7 @@
         </div>
         <div style="width: 100%; display: table;">
         <ul class="nav">
-            <li class="menu"><a class="single_menu" href="#">Page 1</a></li>
+            <li class="menu"><a class="single_menu" href="/shop/item/list">상의</a></li>
             <li class="menu"><a class="single_menu" href="#">Page 2</a></li>
             <li class="menu"><a class="single_menu" href="#">Page 3</a></li>
             <li class="menu"><a class="single_menu" href="#">Page 4</a></li>
