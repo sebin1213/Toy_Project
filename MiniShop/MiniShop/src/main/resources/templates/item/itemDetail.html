@@ -66,7 +66,8 @@ function submit_buy(form) {
 
                     </div>
                     <div class="itemDetailBtn">
-                        <button type="submit" id="itemDetailBtn1" class="btn">장바구니</button>
+<!--                        <button type="submit" id="itemDetailBtn1" class="btn">장바구니</button>-->
+                        <button type="submit" id="itemDetailBtn1" class="btn" onclick="|location.href='@{/basic/items/{itemId}(itemId=${item.id})}'|">장바구니</button>
                         <button type="button" id="itemDetailBtn2" class="btn" onclick='return submit_buy(this.form);'>구매</button>
                     </div>
                 </form>
