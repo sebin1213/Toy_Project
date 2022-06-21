@@ -51,6 +51,7 @@ public class MemberController {
         return "/member/loginMemberForm";
     }
 
+    //json형식으로 데이터를 보내 검증과정 거침...
     @GetMapping(value = "/shop/member/login/error")
     public String loginError(Model model){
         model.addAttribute("loginErrorMsg", "유효하지 않은 아이디, 비밀번호입니다.");
