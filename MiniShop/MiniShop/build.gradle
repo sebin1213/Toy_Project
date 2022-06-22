@@ -1,9 +1,17 @@
 plugins {
-	id 'org.springframework.boot' version '2.6.3'
+	id 'org.springframework.boot' version '2.6.7'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
 	id "com.ewerk.gradle.plugins.querydsl" version "1.0.10" // querydsl 추가
 }
+
+//
+//plugins {
+//	id 'org.springframework.boot' version '2.6.3'
+//	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+//	id 'java'
+//	id "com.ewerk.gradle.plugins.querydsl" version "1.0.10" // querydsl 추가
+//}
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
